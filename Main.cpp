@@ -1,10 +1,10 @@
 ﻿#include <Siv3D.hpp>
 #include "src/User/User.h"
-#include "src/ParentClass/DisplayObject.h"
+#include "src/ParentClass/ClickableObject.h"
 #include "src/SceneManager/SceneManager.h"
 
 namespace ogm {
-	class Hoge : public DisplayObject {
+	class Hoge : public ClickableObject<Rect> {
 	private:
 		Rect view;
 	public:
@@ -16,7 +16,7 @@ namespace ogm {
 			view.draw(Palette::Black);
 		}
 	};
-	class Fuga : public DisplayObject {
+	class Fuga : public ClickableObject<Circle> {
 	private:
 		Circle view;
 	public:
@@ -26,6 +26,20 @@ namespace ogm {
 		}
 		void draw() override {
 			view.draw(Palette::Pink);
+		}
+	};
+	class Piyo : public ClickableObject<Polygon> {
+	private:
+		const Polygon view
+		{
+			Vec2{ 400, 100 }, Vec2{ 600, 300 }, Vec2{ 500, 500 }, Vec2{ 400, 400 }, Vec2{ 300, 500 }, Vec2{ 200, 300 }
+		};
+	public:
+		Piyo() {
+			this->setClickableRange(view);
+		}
+		void draw() override {
+			view.draw(Palette::Skyblue);
 		}
 	};
 }
@@ -39,8 +53,7 @@ void Main() {
 
 	ogm::Hoge hoge{};
 	ogm::Fuga fuga{};
-
-	Circle circle{ 300, 300, 100 };
+	ogm::Piyo piyo{};
 
 	while (System::Update()) {
 		manager.update();

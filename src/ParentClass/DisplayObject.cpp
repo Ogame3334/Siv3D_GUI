@@ -8,7 +8,6 @@ namespace ogm {
 		DisplayObjectManager::GetInstance() << DO_ptr(this);
 	}
 
-	bool DisplayObject::mouseOver() {}
 	void DisplayObject::inputUpdateInternal() {}
 	void DisplayObject::updateInternal() {}
 	void DisplayObject::drawInternal() {

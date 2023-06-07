@@ -14,17 +14,16 @@ namespace ogm {
 			this->objectID = CommonObjectID++;
 		}
 
-	protected:
-		bool mouseOver();
-
 	public:
 		DisplayObject();
-		void inputUpdateInternal();
-		void updateInternal();
-		void drawInternal();
+		virtual void inputUpdateInternal();
+		virtual void updateInternal();
+		virtual void drawInternal();
 
 		virtual void inputUpdate() {};
 		virtual void update() {};
 		virtual void draw() {};
+
+		int getObjectID() const { return this->objectID; }
 	};
 }
